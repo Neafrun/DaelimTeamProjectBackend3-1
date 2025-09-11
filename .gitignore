@@ -1,37 +1,92 @@
-HELP.md
-.gradle
-build/
+# -------------------------
+# OS (macOS / Windows)
+# -------------------------
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# -------------------------
+# Java / Spring Boot
+# -------------------------
+*.class
+*.log
+spring.log
+*.ctxt
+hs_err_pid*
+replay_pid*
+# 산출물(패키징 산물)은 커밋하지 않음
+*.jar
+*.war
+*.nar
+*.ear
+
+# -------------------------
+# Gradle
+# -------------------------
+.gradle/
+**/build/
+
+# Gradle Wrapper(JAR은 반드시 커밋)
 !gradle/wrapper/gradle-wrapper.jar
-!**/src/main/**/build/
-!**/src/test/**/build/
+# (properties 파일은 기본적으로 커밋 대상이므로 별도 예외 불필요)
 
-### STS ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
-.sts4-cache
-bin/
-!**/src/main/**/bin/
-!**/src/test/**/bin/
+# Maven(혹시 혼용될 경우 대비)
+target/
 
-### IntelliJ IDEA ###
-.idea
+# -------------------------
+# IDEs
+# -------------------------
+# IntelliJ IDEA
+.idea/
 *.iws
 *.iml
 *.ipr
 out/
-!**/src/main/**/out/
-!**/src/test/**/out/
+**/out/
 
-### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
-
-### VS Code ###
+# VS Code & Cursor
 .vscode/
+.cursor/
+
+# (옵션) Eclipse/STSe 등 사용 안 하지만 혹시 모를 파일 방지
+.project
+.classpath
+.settings/
+.apt_generated
+.sts4-cache
+
+# -------------------------
+# Binaries / Temp
+# -------------------------
+bin/
+**/bin/
+
+# -------------------------
+# Env / Secrets
+# -------------------------
+.env
+.env.*
+*.local
+*.credentials
+*.key
+*.pem
+
+# -------------------------
+# Coverage / Reports (필요 시 조정)
+# -------------------------
+coverage/
+jacoco.exec
+**/test-results/
+**/reports/
+
+# -------------------------
+# Databases (로컬 개발용 파일)
+# -------------------------
+*.db
+*.sqlite
+*.h2.db
