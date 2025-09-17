@@ -1,4 +1,4 @@
-package org.benefitmap.backend.BenefitMap;
+package org.benefitmap.backend;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

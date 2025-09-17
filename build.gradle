@@ -10,7 +10,7 @@ description = 'benefit-map-backend'
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(17)  // 팀이 21 LTS라면 21로 바꿔도 OK
+        languageVersion = JavaLanguageVersion.of(21) // 팀 표준 LTS 권장
     }
 }
 
@@ -25,30 +25,43 @@ repositories {
 }
 
 dependencies {
-    // === 기본 ===
-    implementation 'org.springframework.boot:spring-boot-starter-web'
+    // === Spring 기본 ===
+    implementation 'org.springframework.boot:spring-boot-starter-web'          // MVC + Tomcat
     implementation 'org.springframework.boot:spring-boot-starter-validation'
-    compileOnly   'org.projectlombok:lombok'
-    annotationProcessor 'org.projectlombok:lombok'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 
-    // === 외부 오픈 API 호출용 WebClient ===
-    implementation 'org.springframework.boot:spring-boot-starter-webflux' // 서버는 MVC 유지, 클라이언트로만 사용
+    // === WebClient만 필요하면(서버는 MVC 유지) ===
+    // starter-webflux (X). 아래 한 줄만 추가해서 WebClient 사용
+    implementation 'org.springframework:spring-webflux'
 
-    // === API 문서 (Swagger UI) ===
+    // === JWT ===
+    implementation 'io.jsonwebtoken:jjwt-api:0.12.5'
+    runtimeOnly   'io.jsonwebtoken:jjwt-impl:0.12.5'
+    runtimeOnly   'io.jsonwebtoken:jjwt-jackson:0.12.5'
+
+    // === DB ===
+    runtimeOnly 'com.mysql:mysql-connector-j' // BOM이 관리하므로 버전 생략 OK
+
+    // === 문서화 ===
     implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.6.0'
 
-    // === 캐시 (동일 파라미터 호출 결과 캐싱) ===
+    // === 캐시 ===
     implementation 'org.springframework.boot:spring-boot-starter-cache'
     implementation 'com.github.ben-manes.caffeine:caffeine:3.1.8'
 
-    // === 네트워크 안정화 (재시도/서킷브레이커) ===
+    // === 안정화(재시도/서킷브레이커) ===
     implementation 'org.springframework.retry:spring-retry'
-    implementation 'org.springframework.boot:spring-boot-starter-aop' // @Retry 프록시용
+    implementation 'org.springframework.boot:spring-boot-starter-aop'
     implementation 'io.github.resilience4j:resilience4j-spring-boot3:2.2.0'
+
+    // === Lombok ===
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
 
     // === 테스트 ===
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
 tasks.named('test') {
