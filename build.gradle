@@ -10,7 +10,7 @@ description = 'benefit-map-backend'
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(24)  // 팀이 21 LTS라면 21로 바꿔도 OK
+        languageVersion = JavaLanguageVersion.of(17)  // 팀이 21 LTS라면 21로 바꿔도 OK
     }
 }
 
