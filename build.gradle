@@ -10,7 +10,7 @@ description = 'benefit-map-backend'
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(17)  // 팀이 21 LTS라면 21로 바꿔도 OK
+        languageVersion = JavaLanguageVersion.of(21)  // 팀이 21 LTS라면 21로 바꿔도 OK
     }
 }
 
@@ -33,6 +33,9 @@ dependencies {
 
     // === 외부 오픈 API 호출용 WebClient ===
     implementation 'org.springframework.boot:spring-boot-starter-webflux' // 서버는 MVC 유지, 클라이언트로만 사용
+    
+    // === XML to JSON 변환 ===
+    implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml'
 
     // === API 문서 (Swagger UI) ===
     implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.6.0'
